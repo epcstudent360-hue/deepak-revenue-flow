@@ -24,6 +24,11 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">Deepak Jack</a>
+            <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-controls="mobile-drawer" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#expertise">Expertise</a></li>
@@ -34,6 +39,25 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Mobile Drawer + Overlay -->
+    <div id="drawer-overlay" class="drawer-overlay" hidden></div>
+    <aside id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <a href="#" class="drawer-logo">Deepak Jack</a>
+            <button id="drawer-close" class="drawer-close" aria-label="Close navigation">×</button>
+        </div>
+        <nav class="drawer-nav">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact" class="btn-nav">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
 
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
