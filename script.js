@@ -29,6 +29,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Mobile drawer (hamburger) handling
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('mobile-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const drawerClose = document.getElementById('drawer-close');
+
+    function openDrawer() {
+        if (!drawer) return;
+        drawer.classList.add('open');
+        overlay.classList.add('active');
+        drawer.setAttribute('aria-hidden', 'false');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('drawer-open');
+        overlay.hidden = false;
+    }
+
+    function closeDrawer() {
+        if (!drawer) return;
+        drawer.classList.remove('open');
+        overlay.classList.remove('active');
+        drawer.setAttribute('aria-hidden', 'true');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('drawer-open');
+        // hide after transition for accessibility
+        setTimeout(() => overlay.hidden = true, 300);
+    }
+
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            const isOpen = drawer.classList.contains('open');
+            if (isOpen) closeDrawer(); else openDrawer();
+        });
+    }
+
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+
+    // Close drawer on navigation link click (mobile friendly)
+    const drawerLinks = document.querySelectorAll('.mobile-drawer .drawer-nav a');
+    drawerLinks.forEach(l => l.addEventListener('click', () => {
+        closeDrawer();
+    }));
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDrawer();
+    });
     // Contact Form Handling
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
