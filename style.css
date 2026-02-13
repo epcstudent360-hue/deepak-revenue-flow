@@ -160,6 +160,30 @@ ul {
     align-items: center;
 }
 
+/* Hamburger (mobile) */
+.hamburger {
+    display: none; /* shown on small screens via media query */
+    background: transparent;
+    border: none;
+    width: 48px;
+    height: 44px;
+    padding: 8px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    align-items: center;
+}
+.hamburger-line {
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    display: block;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
 .nav-links a {
     font-size: 0.9rem;
     color: var(--text-secondary);
@@ -695,6 +719,10 @@ ul {
         display: none;
     }
 
+    .hamburger {
+        display: inline-flex;
+    }
+
     .hero-title {
         font-size: 2.2rem;
     }
@@ -706,6 +734,82 @@ ul {
     .section {
         padding: 4rem 0;
     }
+}
+
+/* Mobile Drawer styles */
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 1400;
+}
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 82%;
+    max-width: 340px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(-110%);
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+}
+.mobile-drawer.open {
+    transform: translateX(0);
+}
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.drawer-logo {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+}
+.drawer-close {
+    font-size: 1.7rem;
+    background: transparent;
+    border: none;
+    line-height: 1;
+    cursor: pointer;
+}
+.drawer-nav {
+    padding: 1rem 1.25rem;
+    overflow-y: auto;
+}
+.drawer-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.drawer-nav a {
+    display: block;
+    padding: 0.85rem 0.5rem;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+.drawer-nav a.btn-nav {
+    margin-top: 1rem;
+    width: fit-content;
+}
+
+/* Prevent body scroll when drawer open */
+body.drawer-open {
+    overflow: hidden;
 }
 
 /* Animation Classes */
