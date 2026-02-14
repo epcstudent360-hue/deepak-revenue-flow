@@ -639,6 +639,233 @@ ul {
     margin-bottom: 2rem;
 }
 
+/* Phone input group: country code + phone */
+.phone-input-group {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.phone-input-group input[type="tel"] {
+    flex: 1 1 auto;
+    padding: 16px;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+    background: #fdfdfd;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.phone-input-group input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+}
+
+/* Custom Country Code Dropdown */
+.country-code-wrapper {
+    position: relative;
+    width: auto;
+    min-width: 120px;
+}
+
+.country-code-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 16px;
+    background: #fdfdfd;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.country-code-btn:hover {
+    border-color: var(--accent);
+    background: #f9f8f6;
+}
+
+.country-code-btn:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(176, 141, 85, 0.1);
+}
+
+.country-code-btn[aria-expanded="true"] {
+    border-color: var(--accent);
+    background: #f9f8f6;
+}
+
+.country-code-display {
+    white-space: nowrap;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.country-code-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--accent);
+    transition: transform 0.2s ease;
+}
+
+.country-code-btn[aria-expanded="true"] .country-code-icon {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.country-code-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    z-index: 1001;
+    width: 100%;
+    min-width: 280px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    max-height: 440px;
+    animation: slideDown 0.18s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.country-code-dropdown[hidden] {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.country-code-search {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 8px 8px 0 0;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    background: #fbfbfb;
+}
+
+.country-code-search:focus {
+    outline: none;
+    background: #fff;
+    border-bottom-color: var(--accent);
+}
+
+.country-code-search::placeholder {
+    color: var(--text-secondary);
+}
+
+.country-code-list {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.country-code-option {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: background-color 0.15s ease;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    display: block;
+}
+
+.country-code-option:hover {
+    background-color: #f5f2ed;
+}
+
+.country-code-option.active {
+    background-color: rgba(176, 141, 85, 0.12);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.country-code-option:disabled {
+    color: var(--text-secondary);
+    background: #f9f9f9;
+    cursor: not-allowed;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-style: italic;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 520px) {
+    .country-code-wrapper {
+        min-width: 115px;
+        flex-shrink: 0;
+    }
+
+    .country-code-btn {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+        min-width: 115px;
+        flex-shrink: 0;
+    }
+
+    .country-code-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .country-code-dropdown {
+        min-width: 250px;
+        max-height: 360px;
+        top: calc(100% + 0.3rem);
+    }
+
+    .country-code-search {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .country-code-option {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .phone-input-group {
+        gap: 0.5rem;
+    }
+
+    .phone-input-group input[type="tel"] {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}
+
 .form-group label {
     display: block;
     margin-bottom: 0.8rem;
@@ -859,4 +1086,71 @@ body.drawer-open {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    width: 64px;
+    height: 64px;
+    background-color: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(176,141,85,0.18);
+    z-index: 2000;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(176,141,85,0.22);
+    outline: none;
+}
+
+.whatsapp-float svg {
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+}
+
+@media (max-width: 480px) {
+    .whatsapp-float {
+        right: 16px;
+        bottom: 18px;
+        width: 56px;
+        height: 56px;
+    }
+    .whatsapp-float svg {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+/* Entrance animation for floating button */
+@keyframes whatsapp-enter {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.whatsapp-float {
+    animation: whatsapp-enter 480ms cubic-bezier(0.165, 0.84, 0.44, 1) 260ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-float {
+        animation: none !important;
+        transition: none !important;
+    }
 }
