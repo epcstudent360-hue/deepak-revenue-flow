@@ -324,8 +324,23 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone No</label>
-                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" inputmode="numeric"
-                                placeholder="Enter 10-digit phone number" required>
+                            <div class="phone-input-group">
+                                <!-- Custom searchable country code dropdown -->
+                                <div class="country-code-wrapper">
+                                    <button type="button" class="country-code-btn" id="country-code-btn" aria-haspopup="listbox" aria-expanded="false">
+                                        <span class="country-code-display">🇮🇳 +91</span>
+                                        <svg class="country-code-icon" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <div class="country-code-dropdown" id="country-code-dropdown" hidden>
+                                        <input type="text" class="country-code-search" id="country-code-search" placeholder="Search country..." autocomplete="off">
+                                        <div class="country-code-list" id="country-code-list" role="listbox"></div>
+                                    </div>
+                                    <select id="country-code" name="country_code" hidden required></select>
+                                </div>
+                                <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="Enter phone number" required>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="message">Enquiry For</label>
@@ -343,6 +358,13 @@
             </footer>
         </div>
     </section>
+
+    <!-- Floating WhatsApp button -->
+    <a href="https://wa.me/919353733950" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M16 3.2C9.2 3.2 3.8 8.6 3.8 15.4c0 2.7.8 5.2 2.4 7.3L4 29l6.5-2.2c1.8 1 3.8 1.6 5.9 1.6 6.8 0 12.2-5.4 12.2-12.2S22.8 3.2 16 3.2zm6.8 18.6c-.3.9-1.9 1.8-2.6 1.9-.6.1-1.4.2-2.8-.3-3.6-1.1-6-4-6.2-4.2-.2-.2-1.6-1.8-1.6-3.5 0-1.8 1-2.6 1.4-3 .3-.3.7-.4 1-.4.3 0 .6 0 .9 0 .2 0 .5-.1.8.5.3.6 1.2 2 1.3 2.2.1.2.2.4.1.7-.1.3-.2.5-.3.8-.1.3-.6.8-1 .9-.3.1-.7.1-1 .1.2.7 1 2.2 2.6 3.5 1.8 1.4 3.3 1.9 4 2 .7.1 1.4.1 2-.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.4-.2-.8-.3z"/>
+        </svg>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
