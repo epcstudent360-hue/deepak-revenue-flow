@@ -111,9 +111,11 @@ ul {
 }
 
 .btn-secondary:hover {
-    background-color: #fff;
-    border-color: #fff;
+    background-color: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
     box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
 .btn-text {
