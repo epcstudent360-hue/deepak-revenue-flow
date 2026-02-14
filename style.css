@@ -206,7 +206,8 @@ ul {
 }
 
 .btn-nav:hover {
-    background: var(--text-primary);
+    background: #b08d55;
+    border-color: #b08d55;
     color: white;
 }
 
