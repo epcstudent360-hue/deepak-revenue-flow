@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contact Form Handling
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxuSdWv2c5FpqPCZ_xJmZw-9zHYmmaWdibGqyHglsFsSZh-orAG9-IZMoD4CAcvcMpKzA/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIZ0snwFYzl_EjdWPwYg2z_6odokTKr8E-5yZ6XbVzJM0_GjFW6kxxnHGJhDgtxXlN2g/exec';
 
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
@@ -97,9 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Get form data
             const formData = new FormData(contactForm);
             const data = new URLSearchParams();
-            for (const pair of formData) {
-                data.append(pair[0], pair[1]);
-            }
+            
+            // Get country code directly from the hidden select
+            const countryCode = document.getElementById('country-code').value || '+91';
+            const phoneNumber = document.getElementById('phone').value || '';
+            
+            // Add fields to send
+            data.append('name', formData.get('name') || '');
+            data.append('email', formData.get('email') || '');
+            data.append('phone', countryCode + ' ' + phoneNumber);
+            data.append('message', formData.get('message') || '');
 
             // Log data being sent (for debugging)
             console.log('Form data being sent:', Object.fromEntries(data));
@@ -112,13 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => {
                     // With no-cors, we get an opaque response.
                     // We assume success if the network request didn't fail.
-                    console.log('Form submitted successfully');
+                    console.log('Form submitted successfully', response);
                     formStatus.innerHTML = '<span class="success-message">Thank you! Your details have been submitted successfully. I will be in touch shortly.</span>';
                     contactForm.reset();
+                    // Reset country code to India
+                    document.getElementById('country-code').value = '+91';
+                    document.querySelector('.country-code-display').textContent = '🇮🇳 +91';
                 })
                 .catch(error => {
                     console.error('Form submission error:', error);
-                    formStatus.innerHTML = '<span class="error-message">Something went wrong. Please try again or contact me directly via WhatsApp/Email.</span>';
+                    formStatus.innerHTML = '<span class="error-message">Submission failed. Please check console. Error: ' + error.message + '</span>';
                 })
                 .finally(() => {
                     btn.disabled = false;
@@ -411,6 +421,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize dropdown
     renderCountryOptions();
+    // Set default country code value in hidden select
+    countrySelect.value = '+91';
 
     // Button click to toggle
     countryCodeBtn.addEventListener('click', () => {
